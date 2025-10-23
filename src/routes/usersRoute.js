@@ -40,6 +40,7 @@ const { getAllCourses, addCourse, getStudentsByCourse } = require('../actions/ge
 const { disableUserAccount, enableUserAccount, resetUserPassword } = require('../actions/userAccountStatus');
 const { getAuditLogs } = require('../actions/auditlog');
 
+
 // =================== tenant ===================
 const createAccount = require('../actions/createAccount');
 const loginUser = require('../actions/login');
@@ -94,7 +95,7 @@ router.post('/users/reset-password', authenticateToken, authorizeAdmin, async (r
 });
 
 router.get('/dashboard', authenticateToken, authorizeAdmin, getAdminDashboard);
-router.post('/add-locker', authenticateToken, authorizeAdmin, addLocker);
+router.post('/locker/add', authenticateToken, authorizeAdmin, addLocker);
 router.post('/approve-rental', authenticateToken, authorizeAdmin, approveRental);
 router.post('/cancel-rental', authenticateToken, authorizeAdmin, cancelRental);
 router.get('/pending-rentals', authenticateToken, authorizeAdmin, getPendingRentals);
@@ -115,6 +116,7 @@ router.put('/users/:user_id/disable', authenticateToken, authorizeAdmin, disable
 router.put('/users/:user_id/enable', authenticateToken, authorizeAdmin, enableUserAccount);
 router.get('/audit-logs', authenticateToken, authorizeAdmin, getAuditLogs);
 router.get("/students", authenticateToken, authorizeAdmin, getStudentsByCourse);
+router.post('/locker/transaction', authenticateToken, lockerCtrl.lockerTransaction);
 
 // =================== tenant routes ===================
 router.post('/create-account', async(req, res) => 
