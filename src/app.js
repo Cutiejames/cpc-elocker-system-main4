@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:8081",   // your frontend url
+  origin: "http://localhost:8080",   // your frontend url
   credentials: true                  // allow cookies/tokens
 }));
 app.use(express.json());
