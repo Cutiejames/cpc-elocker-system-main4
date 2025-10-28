@@ -39,6 +39,8 @@ const downloadDashboardReport = require('../actions/downloadDashboardReport');
 const { getAllCourses, addCourse, getStudentsByCourse } = require('../actions/getAllUsers');
 const { disableUserAccount, enableUserAccount, resetUserPassword } = require('../actions/userAccountStatus');
 const { getAuditLogs } = require('../actions/auditlog');
+const transactionLogs = require('../actions/transactionLogs');
+const { getTenantInfo } = require('../actions/lockerTenant');
 
 
 // =================== tenant ===================
@@ -116,7 +118,9 @@ router.put('/users/:user_id/disable', authenticateToken, authorizeAdmin, disable
 router.put('/users/:user_id/enable', authenticateToken, authorizeAdmin, enableUserAccount);
 router.get('/audit-logs', authenticateToken, authorizeAdmin, getAuditLogs);
 router.get("/students", authenticateToken, authorizeAdmin, getStudentsByCourse);
-router.post('/locker/transaction', authenticateToken, lockerCtrl.lockerTransaction);
+router.get('/transaction-logs', authenticateToken, authorizeAdmin, transactionLogs.getTransactions);
+router.get('/transaction-logs/report/pdf', authenticateToken, authorizeAdmin, transactionLogs.downloadTransactionsPDF); 
+router.get("/tenant-info", getTenantInfo);
 
 // =================== tenant routes ===================
 router.post('/create-account', async(req, res) => 

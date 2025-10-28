@@ -8,4 +8,5 @@ const authenticateToken = require('../middleware/authentication');
 router.get('/lockers', authenticateToken, getAllLockers);
 
 
+
 module.exports = router;
