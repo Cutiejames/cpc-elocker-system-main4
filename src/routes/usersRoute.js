@@ -64,8 +64,8 @@ router.post('/locker/payments/:payment_id/verify', authenticateToken, authorizeA
 router.get('/locker/rentals/:rental_id/payments', authenticateToken, lockerCtrl.getPaymentsForRental);
 router.get('/tickets/:ticket_id/messages', authenticateToken, getTicketMessages);
 router.post('/tickets/:ticket_id/reply', authenticateToken, replyTicket);
-router.get("/settings", authentication, getUserSettings);
-router.post("/settings/update-password", authentication, changePassword);
+router.get('/settings', authentication, getUserSettings);
+router.post('/settings/update-password', authentication, changePassword);
 
 // =================== admin routes ===================
 router.post('/create-user', authenticateToken, authorizeAdmin, createUser);
@@ -96,7 +96,7 @@ router.post('/users/reset-password', authenticateToken, authorizeAdmin, async (r
   }
 });
 
-router.get('/dashboard', authenticateToken, authorizeAdmin, getAdminDashboard);
+router.get('/admin/dashboard', authenticateToken, authorizeAdmin, getAdminDashboard);
 router.post('/locker/add', authenticateToken, authorizeAdmin, addLocker);
 router.post('/approve-rental', authenticateToken, authorizeAdmin, approveRental);
 router.post('/cancel-rental', authenticateToken, authorizeAdmin, cancelRental);
@@ -120,7 +120,7 @@ router.get('/audit-logs', authenticateToken, authorizeAdmin, getAuditLogs);
 router.get("/students", authenticateToken, authorizeAdmin, getStudentsByCourse);
 router.get('/transaction-logs', authenticateToken, authorizeAdmin, transactionLogs.getTransactions);
 router.get('/transaction-logs/report/pdf', authenticateToken, authorizeAdmin, transactionLogs.downloadTransactionsPDF); 
-router.get("/tenant-info", getTenantInfo);
+router.get('/tenant-info', getTenantInfo);
 
 // =================== tenant routes ===================
 router.post('/create-account', async(req, res) => 
